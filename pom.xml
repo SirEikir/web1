@@ -74,6 +74,8 @@
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.2.2</version>
+          <configuration><outputDirectory>C:\Users\crist\Desktop\TOMCAT9\apache-tomcat-9.0.62\apache-tomcat-9.0.62\webapps</outputDirectory>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
