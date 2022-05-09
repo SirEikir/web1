@@ -23,7 +23,7 @@ public class PersonaRepositoy {
                     while (rs.next()) {
     
                     lista.add(new Persona(rs.getString("dni"),
-                            rs.getString("nombre"), rs.getInt("edad")));
+                            rs.getString("Nombre"), rs.getInt("Edad")));
                 }
                 return lista;
     
@@ -34,5 +34,23 @@ public class PersonaRepositoy {
     
     
         }
+        public void insertar(Persona p) {
+
+            try (
+                    Connection con = DataBaseHelper.getConexion();
+                    PreparedStatement sentencia = con
+                            .prepareStatement("insert into Personas (dni,Nombre,Edad) values (?,?,?)");) {
+                sentencia.setString(1, p.getDni());
+                sentencia.setString(2, p.getNombre());
+                sentencia.setInt(3, p.getEdad());
+                sentencia
+                        .executeUpdate();
+    
+            } catch (SQLException | IOException e) {
+               throw new RuntimeException(e);
+            }
+        }
+
+        
     }   
 
