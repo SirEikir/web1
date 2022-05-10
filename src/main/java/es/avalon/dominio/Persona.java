@@ -4,7 +4,12 @@ public class Persona {
     private String dni;
     private String nombre;
     private int edad;
+    
 
+
+    public Persona(String dni) {
+        this.dni = dni;
+    }
 
     public Persona(String dni, String nombre, int edad) {
         this.dni = dni;

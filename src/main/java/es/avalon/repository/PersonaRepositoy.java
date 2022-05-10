@@ -51,6 +51,20 @@ public class PersonaRepositoy {
             }
         }
 
+        public void borrar(Persona p) {
+
+            try (
+                    Connection con = DataBaseHelper.getConexion();
+                    PreparedStatement sentencia = con.prepareStatement(" delete from Personas where dni=?");) {
+                sentencia.setString(1, p.getDni());
+                sentencia.executeUpdate();
+    
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+    
+        }
+
         
     }   
 
