@@ -9,21 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.avalon.activerecord.DataBaseHelper;
-import es.avalon.dominio.Persona;
+import es.avalon.dominio.Libro;
 
-public class PersonaRepositoy {
+public class LibroRepository {
 
-    public List<Persona> buscarTodos() {
+    public List<Libro> buscarTodos() {
 
-        List<Persona> lista = new ArrayList<>();
+        List<Libro> lista = new ArrayList<>();
             try (
                     Connection con = DataBaseHelper.getConexion();
-                    PreparedStatement sentencia = con.prepareStatement("select * from Personas");) {
+                    PreparedStatement sentencia = con.prepareStatement("select * from libros");) {
                     ResultSet rs = sentencia.executeQuery();
                     while (rs.next()) {
     
-                    lista.add(new Persona(rs.getString("dni"),
-                            rs.getString("Nombre"), rs.getInt("Edad")));
+                    lista.add(new Libro(rs.getString("autor"), rs.getInt("ISBN"),
+                    rs.getString("titulo")));
                 }
                 return lista;
     
@@ -34,15 +34,15 @@ public class PersonaRepositoy {
     
     
         }
-        public void insertar(Persona p) {
+        public void insertar(Libro libros) {
 
             try (
                     Connection con = DataBaseHelper.getConexion();
                     PreparedStatement sentencia = con
-                            .prepareStatement("insert into Personas (dni,Nombre,Edad) values (?,?,?)");) {
-                sentencia.setString(1, p.getDni());
-                sentencia.setString(2, p.getNombre());
-                sentencia.setInt(3, p.getEdad());
+                            .prepareStatement("insert into libros (autor,ISBN,titulo) values (?,?,?)");) {
+                sentencia.setString(1, libros.getAutor());
+                sentencia.setInt(2, libros.getIsbn());
+                sentencia.setString(3, libros.getTitulo());
                 sentencia
                         .executeUpdate();
     
@@ -51,12 +51,12 @@ public class PersonaRepositoy {
             }
         }
 
-        public void borrar(Persona p) {
+        public void borrar(Libro libros) {
 
             try (
                     Connection con = DataBaseHelper.getConexion();
-                    PreparedStatement sentencia = con.prepareStatement(" delete from Personas where dni=?");) {
-                sentencia.setString(1, p.getDni());
+                    PreparedStatement sentencia = con.prepareStatement(" delete from libros where ISBN=?");) {
+                sentencia.setInt(1, libros.getIsbn());
                 sentencia.executeUpdate();
     
             } catch (SQLException | IOException e) {
@@ -64,5 +64,8 @@ public class PersonaRepositoy {
             }
     
         }
+
+        
     }   
+
 

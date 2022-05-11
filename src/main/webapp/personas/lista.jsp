@@ -1,9 +1,9 @@
 <%@page import="java.util.List" %>
-<%@page import="es.avalon.repository.*"%>
+<%@page import="es.avalon.services.*"%>
 <%@page import="es.avalon.dominio.*"%>
 
-<%PersonaRepositoy repositorio = new PersonaRepositoy();
-    List<Persona> lista = repositorio.buscarTodos();
+<%LibroPersonaService servicio = new LibroPersonaService();
+    List<Persona> lista = servicio.buscarTodasLasPersonas();
 
 %>
 
