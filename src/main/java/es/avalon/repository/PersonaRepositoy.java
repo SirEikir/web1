@@ -34,6 +34,28 @@ public class PersonaRepositoy {
     
     
         }
+
+    public Persona buscarUnaPersona(Persona p) {
+
+        try (
+                Connection con = DataBaseHelper.getConexion();
+                PreparedStatement sentencia = con.prepareStatement("select * from Personas where dni=?");) 
+                {
+                    sentencia.setString(1, p.getDni());
+                ResultSet rs = sentencia.executeQuery();
+                rs.next();
+
+                Persona persona = new Persona(rs.getString("dni"),
+                        rs.getString("Nombre"), rs.getInt("Edad"));
+            
+            return persona;
+
+        } catch (SQLException | IOException e) {
+            
+            throw new RuntimeException(e);
+        }
+    
+        }
         public void insertar(Persona p) {
 
             try (
@@ -64,5 +86,6 @@ public class PersonaRepositoy {
             }
     
         }
+
     }   
 

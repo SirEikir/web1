@@ -26,6 +26,9 @@ public class LibroPersonaService {
         repoPersona.borrar(persona);
 
     }
+    public Persona buscarUnaPersona(Persona persona) {
+        return repoPersona.buscarUnaPersona(persona);
+    }
     
 
     public List<Libro> buscarTodosLosLibros() {
@@ -42,5 +45,7 @@ public class LibroPersonaService {
         repoLibro.borrar(lib);
 
     }
+
+    
     
 }

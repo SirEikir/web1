@@ -1,5 +1,6 @@
 es\avalon\dominio\Libro.class
 es\avalon\repository\PersonaRepositoy.class
+es\avalon\controllers\ServletControlador.class
 es\avalon\activerecord\BibliotecaActiveRecord.class
 es\avalon\activerecord\PersonaActiveRecord.class
 es\avalon\repository\LibroRepository.class
